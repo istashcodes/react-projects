@@ -1,1 +1,1 @@
-# react-projects
+# meeting-notes
