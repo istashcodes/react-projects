@@ -4,12 +4,21 @@
       class="accordion"
       v-bind:key="topic.id"
       v-for="(topic, i) in topics"
-      v-bind:class="{ 'accordion-expanded': topic.expanded }"
+      v-bind:class="{ 'accordion-expanded': topic.expanded, 'accordion-archived': topic.archived }"
     >
       <!-- The click event of each accordion menu -->
       <div class="accordion-header">
-        <a href="#" v-on:click="expand(event, i)">
-          <div class="accordion-header-div">{{ topic.title }}</div>
+        <a href="#" v-on:click.prevent="expand($event, i)">
+          <div class="accordion-header">
+            <div class="accordion-header-div">
+             <img src="../assets/icon-edit.svg" />
+            </div>
+            <div class="accordion-header-div">{{ topic.title }}</div>
+            <div class="accordion-header-div archive" @click.stop="archive(i)">
+              <img src="../assets/icon-archive.png" />
+              move to archive
+            </div>
+          </div>
           <div class="accordion-header-div">
             <div class="accordion-caret"></div>
           </div>
@@ -25,9 +34,12 @@
 <script>
 import { TweenLite, Elastic, Bounce } from 'gsap'
 export default {
-  name: 'accordion',
+  name: 'topiccard',
   props: ['topics'],
   methods: {
+    archive: function(i) {
+      this.topics[i].archived = !this.topics[i].archived
+    },
     expand: function(e, i) {
       // e.preventDefault()
 
@@ -54,7 +66,7 @@ export default {
 </script>
 
 <style lang="scss">
-$base-color: #727272;
+$base-color: #000000;
 $base-width: 700px;
 $base-time: 200ms;
 
@@ -64,7 +76,7 @@ $app-padding: 2rem;
 $accordion-background-color: #efefef;
 $accordion-max-width: $base-width;
 $accordion-padding: 2rem 1rem;
-$accordion-border-radius: 0.5rem;
+$accordion-border-radius: 0.3rem;
 $accordion-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
 
 $accordion-header-font-size: 1.2rem;
@@ -89,13 +101,19 @@ $accordion-caret-expanded-transform: scale(1) rotate(180deg);
 
 $accordion-body-content-padding: 1rem;
 
+$archive-text-font-weight: 300;
+$archive-text-font-size: 0.9rem;
+$archive-text-line-height: 1.6rem;
+$archive-text-font-style: italic;
+$archive-text-font-color: #000aff;
+
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,400i,700');
 
 html,
 body,
 #app {
   color: $base-color;
-  font-family: Montserrat, sans-serif;
+  font-family: Roboto, Montserrat, sans-serif;
   font-size: 14px;
   width: 100%;
   height: 100%;
@@ -134,6 +152,10 @@ body,
   }
 }
 
+.accordion-archived {
+  display: none;
+}
+
 .accordion-expanded {
   .accordion-caret {
     animation: accordion-is-inexpanded $base-time linear forwards;
@@ -145,6 +167,7 @@ body,
   font-size: $accordion-header-font-size;
   font-weight: bold;
   position: relative;
+  display: flex;
   a {
     color: inherit;
     text-decoration: none;
@@ -163,6 +186,13 @@ body,
 
 .accordion-header-div {
   padding: $accordion-header-padding;
+  &.archive {
+    font-weight: $archive-text-font-weight;
+    font-size: $archive-text-font-size;
+    line-height: $archive-text-line-height;
+    font-style: $archive-text-font-style;
+    color: $archive-text-font-color;
+  }
   &:last-child {
     padding-left: 0;
     display: flex;
