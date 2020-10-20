@@ -80,8 +80,9 @@ $accordion-border-radius: 0.3rem;
 $accordion-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
 
 $accordion-header-font-size: 1.2rem;
+$accordion-header-line-height: 1.3rem;
 $accordion-header-height: 1rem;
-$accordion-header-padding: 1rem 1rem 1rem 1rem;
+$accordion-header-padding: 1rem 0rem 1rem 1rem;
 $accordion-header-border-radius: 0.6rem;
 $accordion-header-transition: background-color $base-time ease-in-out;
 
@@ -108,12 +109,13 @@ $archive-text-font-style: italic;
 $archive-text-font-color: #000aff;
 
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,400i,700');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 
 html,
 body,
 #app {
   color: $base-color;
-  font-family: Roboto, Montserrat, sans-serif;
+  font-family: 'Roboto', Montserrat, sans-serif;
   font-size: 14px;
   width: 100%;
   height: 100%;
@@ -165,6 +167,7 @@ body,
 .accordion-header {
   color: inherit;
   font-size: $accordion-header-font-size;
+  line-height: $accordion-header-line-height;
   font-weight: bold;
   position: relative;
   display: flex;
@@ -190,11 +193,12 @@ body,
     font-weight: $archive-text-font-weight;
     font-size: $archive-text-font-size;
     line-height: $archive-text-line-height;
+    text-align: center;
     font-style: $archive-text-font-style;
     color: $archive-text-font-color;
   }
   &:last-child {
-    padding-left: 0;
+    padding-right: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;

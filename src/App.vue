@@ -1,15 +1,18 @@
 <template>
   <div id="app">
+    <Header />
     <TopicCard v-bind:topics="topics" />
   </div>
 </template>
 
 <script>
 import TopicCard from '@/components/TopicCard.vue'
+import Header from '@/components/layout/Header.vue'
 
 export default {
   name: 'app',
   components: {
+    Header,
     TopicCard
   },
   data() {
