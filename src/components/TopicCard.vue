@@ -4,19 +4,20 @@
       class="accordion"
       v-bind:key="topic.id"
       v-for="(topic, i) in topics"
-      v-bind:class="{ 'accordion-expanded': topic.expanded, 'accordion-archived': topic.archived }"
+      v-bind:class="{
+        'accordion-expanded': topic.expanded,
+        'accordion-archived': topic.archived
+      }"
     >
       <!-- The click event of each accordion menu -->
       <div class="accordion-header">
         <a href="#" v-on:click.prevent="expand($event, i)">
-          <div class="accordion-header">
-            <div class="accordion-header-div">
-             <img src="../assets/icon-edit.svg" />
-            </div>
-            <div class="accordion-header-div">{{ topic.title }}</div>
-            <div class="accordion-header-div archive" @click.stop="archive(i)">
-              <img src="../assets/icon-archive.png" />
-              move to archive
+          <div class="accordion-header-div" id="topic-title">
+            <img src="../assets/icon-edit.svg" />
+            <p>{{ topic.title }}</p>
+            <img src="../assets/icon-archive.png" />
+            <div class="archive" @click.stop="archive(i)">
+              <p>move to archive</p>
             </div>
           </div>
           <div class="accordion-header-div">
@@ -79,7 +80,7 @@ $accordion-padding: 2rem 1rem;
 $accordion-border-radius: 0.3rem;
 $accordion-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
 
-$accordion-header-font-size: 1.2rem;
+$accordion-header-font-size: 1.1rem;
 $accordion-header-line-height: 1.3rem;
 $accordion-header-height: 1rem;
 $accordion-header-padding: 1rem 0rem 1rem 1rem;
@@ -171,6 +172,9 @@ body,
   font-weight: bold;
   position: relative;
   display: flex;
+  #topic-title {
+    width: 40em;
+  }
   a {
     color: inherit;
     text-decoration: none;
@@ -189,13 +193,17 @@ body,
 
 .accordion-header-div {
   padding: $accordion-header-padding;
-  &.archive {
+  display: flex;
+  p {
+    margin: 0;
+  }
+  .archive {
     font-weight: $archive-text-font-weight;
     font-size: $archive-text-font-size;
     line-height: $archive-text-line-height;
-    text-align: center;
     font-style: $archive-text-font-style;
     color: $archive-text-font-color;
+    display: flex;
   }
   &:last-child {
     padding-right: 1rem;
