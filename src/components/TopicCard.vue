@@ -15,8 +15,8 @@
           <div class="accordion-header-div" id="topic-title">
             <img src="../assets/icon-edit.svg" />
             <p>{{ topic.title }}</p>
-            <img src="../assets/icon-archive.png" />
             <div class="archive" @click.stop="archive(i)">
+              <img src="../assets/icon-archive.png" />
               <p>move to archive</p>
             </div>
           </div>
@@ -173,7 +173,7 @@ body,
   position: relative;
   display: flex;
   #topic-title {
-    width: 40em;
+    width: 100%;
   }
   a {
     color: inherit;
@@ -212,6 +212,16 @@ body,
     justify-content: center;
   }
 }
+
+// .accordion-header-div img {
+//   padding: 0 1%;
+// }
+// .accordion-header-div p {
+//   padding: 0 1%;
+// }
+// .accordion-header-div div {
+//   padding: 0 1%;
+// }
 
 .accordion-caret {
   // background-image: $accordion-caret-background-image;
