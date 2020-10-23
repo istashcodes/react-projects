@@ -172,9 +172,6 @@ body,
   font-weight: bold;
   position: relative;
   display: flex;
-  #topic-title {
-    width: 100%;
-  }
   a {
     color: inherit;
     text-decoration: none;
@@ -194,8 +191,11 @@ body,
 .accordion-header-div {
   padding: $accordion-header-padding;
   display: flex;
+  justify-content: space-between;
+  gap: 3px;
   p {
     margin: 0;
+    padding-top: 3px;
   }
   .archive {
     font-weight: $archive-text-font-weight;
