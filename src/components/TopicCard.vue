@@ -12,7 +12,7 @@
       <!-- The click event of each accordion menu -->
       <div class="accordion-header">
         <a href="#" v-on:click.prevent="expand($event, i)">
-          <div class="accordion-header-div" id="topic-title">
+          <div class="accordion-header-div">
             <img src="../assets/icon-edit.svg" />
             <p>{{ topic.title }}</p>
             <div class="archive" @click.stop="archive(i)">
@@ -207,21 +207,9 @@ body,
   }
   &:last-child {
     padding-right: 1rem;
-    display: flex;
     align-items: center;
-    justify-content: center;
   }
 }
-
-// .accordion-header-div img {
-//   padding: 0 1%;
-// }
-// .accordion-header-div p {
-//   padding: 0 1%;
-// }
-// .accordion-header-div div {
-//   padding: 0 1%;
-// }
 
 .accordion-caret {
   // background-image: $accordion-caret-background-image;
